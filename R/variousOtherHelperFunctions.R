@@ -1876,7 +1876,8 @@ digiKamVideoHierarchicalSubject <- function(stationDir,
   # Linux/Mac solution?
   
   if(.Platform$OS.type == "unix"){
-    Albums$albumPath_full2 <- paste0(stationDir,Albums$relativePath)#paste(substr(stationDir, 1,2),
+    require(stringr)
+    Albums$albumPath_full2 <- paste0(paste(unlist(str_split(stationDir, "/", n=Inf))[1:(length(unlist(str_split(stationDir, "/", n=Inf)))-2)],collapse = "/"),Albums$relativePath)#paste(substr(stationDir, 1,2),
     #Albums$albumPath_full,
     #sep = "")
   }
