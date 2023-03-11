@@ -1874,12 +1874,16 @@ digiKamVideoHierarchicalSubject <- function(stationDir,
   }
   
   # Linux/Mac solution?
-  if(.Platform$OS.type == "unix"){
+  if(.Platform$OS.type == "unix"&all(stringr::str_detect(Albums$albumPath_full,"lilywang"))){
     Albums$albumPath_full2 <- Albums$albumPath_full#paste(substr(stationDir, 1,2),
                                     #Albums$albumPath_full,
                                     #sep = "")
   }
-  
+  if(.Platform$OS.type == "unix"&(!stringr::str_detect(Albums$albumPath_full,"lilywang"))){
+    Albums$albumPath_full2 <- paste0(stationDir,Albums$relativePath)#paste(substr(stationDir, 1,2),
+    #Albums$albumPath_full,
+    #sep = "")
+  }
   
   
   # add "/" to ensure Station1 doesn't include Station10 also. Also ensure all folders end with one / only
